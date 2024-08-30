@@ -20,6 +20,6 @@ jobs:
       if: success()
       uses: manusa/actions-publish-docker@v1.1.2
       with:
-        name: virtualflybrain/jupyterhub
+        name: virtualflybrain/jupyterhub:latest
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
