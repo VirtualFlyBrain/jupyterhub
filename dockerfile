@@ -4,4 +4,4 @@ FROM jupyterhub/jupyterhub:latest
 # Install oauthenticator for GitHub authentication
 RUN pip install oauthenticator dockerspawner jupyterlab
 
-
+ENV JUPYTER_ENABLE_LAB=yes
