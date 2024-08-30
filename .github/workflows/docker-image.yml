@@ -20,12 +20,14 @@ jobs:
     - name: Tag Docker Image with Main Tag
       run: docker tag virtualflybrain/jupyterhub:latest virtualflybrain/jupyterhub:main
 
-    - name: Dockerize
-      if: success()
-      uses: manusa/actions-publish-docker@v1.1.2
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
       with:
-        name: |
-          virtualflybrain/jupyterhub:latest
-          virtualflybrain/jupyterhub:main
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+    - name: Push Latest Tag
+      run: docker push virtualflybrain/jupyterhub:latest
+
+    - name: Push Main Tag
+      run: docker push virtualflybrain/jupyterhub:main
