@@ -7,19 +7,25 @@ on:
     branches: [ main ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
-    - run: docker build . --file Dockerfile --tag jupyterhub:latest
+      uses: actions/checkout@v2
+
+    - name: Build Docker Image with Latest Tag
+      run: docker build . --file Dockerfile --tag virtualflybrain/jupyterhub:latest
+
+    - name: Tag Docker Image with Main Tag
+      run: docker tag virtualflybrain/jupyterhub:latest virtualflybrain/jupyterhub:main
+
     - name: Dockerize
       if: success()
       uses: manusa/actions-publish-docker@v1.1.2
       with:
-        name: virtualflybrain/jupyterhub:latest
+        name: |
+          virtualflybrain/jupyterhub:latest
+          virtualflybrain/jupyterhub:main
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
