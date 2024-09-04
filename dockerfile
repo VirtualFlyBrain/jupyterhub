@@ -5,7 +5,7 @@ RUN apt-get update -y; apt-get install -y libglfw3-dev libgles2-mesa-dev
 RUN pip install --upgrade pip --quiet
 
 # Install oauthenticator for GitHub authentication
-RUN pip install --upgrade oauthenticator dockerspawner jupyterlab vfb_connect ipywidgets matplotlib
+RUN pip install --upgrade oauthenticator dockerspawner jupyterlab vfb_connect ipywidgets matplotlib git
 
 RUN python -c 'from vfb_connect import vfb'
 
